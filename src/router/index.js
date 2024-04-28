@@ -57,5 +57,14 @@ const router = createRouter({
     },
   ]
 })
-
+//路由守卫，导航首位，路由拦截
+router.beforeEach((to,from,next)=>{
+  const token = localStorage.getItem("token")
+  if(token || to.path === "/home" || to.path === "/"){
+    next();
+  }else{
+    alert("请先登录")
+    next("/home");
+  }
+})
 export default router

@@ -35,19 +35,22 @@ export default {
         const login = () => {
             console.log(form)
             if (form.name != '' && form.password != '') {
-                axios.post(
+                axios.get(
                     'http://127.0.0.1:8000/api/user/login/', {
+                    params: {
                         username: form.name,
                         password: form.password
-                    }).then((res) => {
-                        //if (res.data) {
-                            // visible = false
-                            console.log(res.data)
-                        //}
-                    }).catch(reasion => { //使用catch来获取异常  
-                        console.log("端口的一异常")
-                        console.log(reasion)
-                    })
+                    }
+                }).then((res) => {
+                    //if (res.data) {
+                    // visible = false
+                    // localStorage.setItem("token",form.name)
+                    console.log(res.data)
+                    //}
+                }).catch(reasion => { //使用catch来获取异常  
+                    console.log("端口的一异常")
+                    console.log(reasion)
+                })
             } else {
                 alert("用户名不能为空")
             }

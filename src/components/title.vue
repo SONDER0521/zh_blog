@@ -15,11 +15,11 @@
         </a-menu-item>
         <a-menu-item key="1">主页</a-menu-item>
         <a-menu-item key="2">分类</a-menu-item>
-        <a-menu-item key="3">归档</a-menu-item>   <!-- 归档-->
+        <a-menu-item key="3">归档</a-menu-item> <!-- 归档-->
         <a-menu-item key="4">留言</a-menu-item>
-        <a-menu-item key="5">关于</a-menu-item>
+        <a-menu-item key="5">我的发布</a-menu-item>
         <!-- <a-menu-item key="6">发布</a-menu-item> -->
-       
+
         <a-space style="float: right">
           <a-button type="primary" status="danger" @click="router.push('/newsblogs')">发布</a-button>
           <a-button @click="login" type="primary">登录</a-button>
@@ -33,7 +33,7 @@
 import router from "@/router"
 import login_denglu from "../components/login.vue"
 import register1 from "../components/register.vue"
-import { provide, ref } from 'vue'
+import { provide, reactive, ref } from 'vue'
 //控制路由的跳转
 const to = (key) => {
   switch (key) {
