@@ -13,14 +13,15 @@
             提交内容
           </template>
           <div>
+            <a-space direction="vertical">
+              <a-input :style="{ width: '320px' }" placeholder="请输入文章标题" v-model="title"></a-input>
 
-            <a-input :style="{ width: '320px' }" placeholder="请输入文章标题" v-model="title"></a-input>
-            <br>
-            <!-- <a-input-tag :default-value="['test']" :style="{ width: '320px' }" placeholder="Please Enter" allow-clear /> -->
-            <!-- <a-select :style="{ width: '320px' }" placeholder="请选择文章类型">
-              <a-option v-for="i in form_title.value" :key="i.id">{{ i.name }}</a-option>
-            </a-select> -->
+              <a-select v-model="value" :style="{ width: '320px' }" placeholder="请选择分类" multiple :scrollbar="scrollbar">
+                <a-option v-for="(i, index) in form_title.value" :key="index" :value="i.id" :label="i.name" />
+              </a-select>
 
+              <!-- </a-select> -->
+            </a-space>
           </div>
         </a-modal>
         <!-- <a-button type="primary" @click="clear">清空</a-button> -->
@@ -87,23 +88,27 @@ const handleClick = () => {
   })
 
 };
+const form_markdown = new FormData();
+const value = ref()
 const handleOk = () => {
+  console.log("这是tag的值",value.value)
+  const value1 =  Array.from(value.value)
+  console.log(value1)
   const content = vditor.value.getValue();
-  console.log("title",title.value,"markdown",content)
+
+  form_markdown.append("title", title.value)
+  form_markdown.append("author", localStorage.getItem("token"))
+  form_markdown.append("markdown", content)
+  form_markdown.append("cover", '1')
+  form_markdown.append("tags", value1)
+  form_markdown.append("created_at", "2024-04-24")
+  form_markdown.append("modified_at", "2024-04-24")
+  console.log("title", title.value, "markdown", content)
   axios.post(
-    'http://127.0.0.1:8000/api/home/article/',
-    {
-      title: title.value,
-      author:3,
-      markdown: content,
-      cover: '1',
-      tags: ['1'],
-      created_at:"2024-04-24",
-      modified_at:"2024-04-24"
-    }
-  ).then(res=>{
-    console.log("132",res.data)
-  }).catch(err=>{
+    'http://127.0.0.1:8000/api/home/article/', form_markdown
+  ).then(res => {
+    console.log("132", res.data)
+  }).catch(err => {
     console.log(err)
   })
   visible.value = false;
@@ -112,6 +117,7 @@ const handleOk = () => {
 const handleCancel = () => {
   visible.value = false;
 }
+
 
 </script>
 <style></style>

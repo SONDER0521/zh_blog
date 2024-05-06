@@ -4,15 +4,18 @@
     <a-layout>
       <a-layout-content>
 
-        <div style="width: 60%; margin: 0 auto; border: 1px solid #000; display: flex;">
+        <div style="width: 60%; margin: 0 auto;  display: flex;">
           <div style="width: 78%;  background-color: #FFFFFF;  cursor: pointer;">
 
             <div v-for="(i, index) in form.value" :key="index">
-              <div style="display: flex; align-items: center; " :v-model="form.views++" @click="particulars(i.author)">
+              <div style="display: flex; align-items: center; " :v-model="form.views++" @click="particulars(i.id)">
 
                 <a-typography :style="{ width: '70%', padding: ' 15px 15px 0px 15px' }">
                   <a-typography-title :heading="5">{{ i.title }}</a-typography-title>
-                  <a-typography-paragraph type="secondary">
+                  <a-typography-paragraph type="secondary" :ellipsis="{
+              rows: 3,
+              showTooltip: true,
+            }">
                     {{ i.markdown }}
                   </a-typography-paragraph>
                 </a-typography>

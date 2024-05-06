@@ -1,7 +1,7 @@
 <template>
-    <div style="width: 60%; margin: 0 auto; border: 1px solid #000; display: flex;">
+    <div style="width: 60%; margin: 0 auto;  display: flex;">
 
-        <div style="width: 20%;  background-color: #FFFFFF;border: 1px solid #000; ">
+        <div style="width: 20%;  background-color: #FFFFFF; ">
             <div class="menu-demo">
                 <a-menu>
                     <a-sub-menu key="0">
@@ -14,7 +14,7 @@
             <!-- <a-tree :data="form_title.value" :default-expanded-keys="['0-0-0']" :default-selected-keys="['0-0-0', '0-0-1']" /> -->
         </div>
 
-        <div style="width: 78%; border: 1px solid #000; background-color: #FFFFFF; margin-left: 10px;cursor: pointer;">
+        <div style="width: 78%;  background-color: #FFFFFF; margin-left: 10px;cursor: pointer;">
             <div v-for="(i, index) in form_details.value" :key="index">
                 <div style="display: flex; align-items: center;" @click="particulars(i.id)">
                     <a-typography :style="{ width: '70%', padding: ' 15px 15px 0px 15px' }">
@@ -45,7 +45,7 @@
 <script setup>
 import router from '@/router';
 import axios from 'axios';
-import { reactive } from 'vue';
+import { reactive,onBeforeUpdate } from 'vue';
 const particulars = (key) => {
     router.push({
         path: "/particulars",
@@ -92,4 +92,5 @@ const show_class = (key) => {
         console.log(err)
     })
 }
+
 </script>

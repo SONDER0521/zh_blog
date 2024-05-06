@@ -19,21 +19,26 @@
         <a-menu-item key="4">留言</a-menu-item>
         <a-menu-item key="5">我的发布</a-menu-item>
         <!-- <a-menu-item key="6">发布</a-menu-item> -->
+        <a-space style="float: right" v-show="show">
 
-        <a-space style="float: right">
-          <a-button type="primary" status="danger" @click="router.push('/newsblogs')">发布</a-button>
           <a-button @click="login" type="primary">登录</a-button>
           <a-button @click="register" type="primary" status="danger">注册</a-button>
         </a-space>
+        <a-space style="float: right" v-show="!show">
+          <a-button type="primary" status="danger" @click="router.push('/newsblogs')">发布</a-button>
+          <a-button type="primary" status="danger" @click="out_login">退出</a-button>
+        </a-space>
       </div>
     </a-menu>
+
   </div>
 </template>
 <script setup>
 import router from "@/router"
 import login_denglu from "../components/login.vue"
 import register1 from "../components/register.vue"
-import { provide, reactive, ref } from 'vue'
+import { inject, provide, reactive, ref } from 'vue'
+// localStorage.setItem("show", true)
 //控制路由的跳转
 const to = (key) => {
   switch (key) {
@@ -54,11 +59,28 @@ const to = (key) => {
       break;
   }
 }
+
+
+//登录和退出组件的切换
+//退出组件的内容
+const out_login = () => {
+  show.value = true
+  router.push('/home')
+  localStorage.clear()
+
+}
+const show = ref(true)
 //组件的传值登录组件
 const msg = ref(false);
+localStorage.setItem("show", false)
 const login = () => {
+  if (localStorage.getItem("show")) {
+    show.value = false
+  }
   msg.value = !msg.value
 }
+
+
 provide("msg", msg)
 //注册组件传值
 const registe = ref(false);

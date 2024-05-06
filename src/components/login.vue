@@ -1,5 +1,5 @@
 <template>
-    <a-modal v-model:visible="visible" title="登录" @cancel="handleCancel" cancel-text="注册" ok-text="登录" @close="register"
+    <a-modal v-model:visible="visible" title="登录" @cancel="handleCancel" cancel-text="关闭" ok-text="登录" @close="register"
         @ok="login">
         <!-- @before-ok="handleBeforeOk" -->
         <a-form :model="form">
@@ -14,11 +14,10 @@
 </template>
 
 <script>
-import { reactive, ref, inject, } from 'vue';
+import { reactive, ref, inject,provide } from 'vue';
 import axios from 'axios'
 export default {
     setup() {
-
         const visible = inject("msg")
         console.log(visible)
         const form = reactive({
@@ -32,25 +31,20 @@ export default {
         const handleCancel = () => {
             visible.value = false;
         }
+        //登录按钮
         const login = () => {
+            console.log("这是用户信息：")
             console.log(form)
             if (form.name != '' && form.password != '') {
-                axios.get(
-                    'http://127.0.0.1:8000/api/user/login/', {
-                    params: {
-                        username: form.name,
-                        password: form.password
-                    }
-                }).then((res) => {
-                    //if (res.data) {
-                    // visible = false
-                    // localStorage.setItem("token",form.name)
-                    console.log(res.data)
-                    //}
-                }).catch(reasion => { //使用catch来获取异常  
-                    console.log("端口的一异常")
-                    console.log(reasion)
-                })
+                axios.post('http://127.0.0.1:8000/api/user/login/', form)
+                    .then((res) => {
+                        localStorage.setItem("token", res.data.id)
+                        localStorage.setItem("token_user",form.name)
+                        localStorage.setItem("show",true)
+                        console.log(res.data)
+                    }).catch(reasion => { //使用catch来获取异常  
+                        console.log(reasion)
+                    })
             } else {
                 alert("用户名不能为空")
             }

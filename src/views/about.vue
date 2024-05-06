@@ -1,8 +1,8 @@
 <template>
 
-    <div style="width: 60%; margin: 0 auto; border: 1px solid #000; border: 1px solid #000;">
-        <div style="width: 100%;  background-color: #FFFFFF;border: 1px solid #000; ">
-            <h2 style="text-align: center;">我的名称{{ token  }}</h2>
+    <div style="width: 60%; margin: 0 auto; ">
+        <div style="width: 100%;  background-color: #FFFFFF; ">
+            <h2 style="text-align: center;">我的文章</h2>
             <span style="padding-left: 15px;">
                 <a-avatar>
                     <img alt="avatar"
@@ -12,7 +12,7 @@
             <a-divider style="width: 95%; min-width: 90%; margin: 20px auto;" />
         </div>
         <div style=" display: flex;">
-            <div style="width: 80%; padding: 10px; background-color: #FFFFFF;border: 1px solid #000; ">
+            <div style="width: 80%; padding: 10px; background-color: #FFFFFF; ">
                 <div v-for="(i, index) in form.value" :key="index">
                     <div style="display: flex; align-items: center; " @click="particulars(i.id)">
 
@@ -33,7 +33,7 @@
 
             </div>
 
-            <div style="width: 20%; background-color: #FFFFFF;  text-align: center; border: 1px solid #000;">
+            <div style="width: 20%; background-color: #FFFFFF;  text-align: center;">
             </div>
         </div>
     </div>
@@ -45,16 +45,17 @@ import { useRoute } from 'vue-router';
 import router from '@/router';
 import axios from 'axios';
 const route = useRoute()
-const token = ref(localStorage.getItem("token"))
-console.log("token", token.value)
+const token = ref(localStorage.getItem("tokne_user"))
+// console.log("token", localStorage.getItem("token_user"))
 //在调用我发布的内容页面
 const form = reactive({})
 axios.get(
     'http://127.0.0.1:8000/api/personal/profile/', {
     params: {
-        username: token.value
+        username:localStorage.getItem("token_user")
     }
 }).then((res) => {
+    console.log(res)
     form.value = res.data.articles
     console.log(form.value)
 }).catch((err) => {
