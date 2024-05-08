@@ -19,8 +19,8 @@
                     {{ i.markdown }}
                   </a-typography-paragraph>
                 </a-typography>
-                <img width="100" style="margin-left: 5%;"
-                  src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp" />
+                <!-- <img width="100" style="margin-left: 5%;"
+                  src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp" /> -->
               </div>
               <div style="padding: 0px 15px 15px 15px;">
                 <div>查看&nbsp;{{ i.views }}&nbsp;评论&nbsp;{{ i.comments }}&nbsp;赞&nbsp;{{ i.likes }}&nbsp;&nbsp;&nbsp;{{
@@ -69,12 +69,14 @@ axios.get(
 
 const particulars = (key) => {
   //console.log("这是首页传值",form.value[key])
-  router.push({
-    path: "/particulars",
-    query: {
-      key: key
-    }
-  })
+  window.open(`/particulars?key=${key}`, '_blank');
+  // router.push({
+  //   path: "/particulars",
+
+  //   query: {
+  //     key: key
+  //   }
+  // })
 }
 
 </script>

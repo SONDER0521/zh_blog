@@ -72,11 +72,10 @@ const out_login = () => {
 const show = ref(true)
 //组件的传值登录组件
 const msg = ref(false);
-localStorage.setItem("show", false)
+if (localStorage.getItem("show")) {
+  show.value = false
+}
 const login = () => {
-  if (localStorage.getItem("show")) {
-    show.value = false
-  }
   msg.value = !msg.value
 }
 

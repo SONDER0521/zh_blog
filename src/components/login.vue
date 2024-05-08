@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { reactive, ref, inject,provide } from 'vue';
+import { reactive, ref, inject, provide } from 'vue';
 import axios from 'axios'
 export default {
     setup() {
@@ -38,9 +38,15 @@ export default {
             if (form.name != '' && form.password != '') {
                 axios.post('http://127.0.0.1:8000/api/user/login/', form)
                     .then((res) => {
-                        localStorage.setItem("token", res.data.id)
-                        localStorage.setItem("token_user",form.name)
-                        localStorage.setItem("show",true)
+                        if (res.data == '登录失败') {
+                            alert("登录失败,请重新登录")
+                            form ={}
+                        } else {
+                            localStorage.setItem("token", res.data.id)
+                            localStorage.setItem("token_user", form.name)
+                            localStorage.setItem("show", true)
+                            window.location.reload();
+                        }
                         console.log(res.data)
                     }).catch(reasion => { //使用catch来获取异常  
                         console.log(reasion)
@@ -52,7 +58,6 @@ export default {
         }
         const register = () => {
             visible.value = false
-
             // console.log("注册组件调用")
         }
         return {

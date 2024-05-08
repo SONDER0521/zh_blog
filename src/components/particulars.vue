@@ -6,8 +6,6 @@
             <h2 style="text-align: center;">{{ content.value.article.title }}</h2>
             <span style="padding-left: 15px;">
                 <a-avatar>
-                    <!-- <img alt="avatar"
-                        src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp" /> -->
                     <a-image width="200"
                         src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp" />
                 </a-avatar>

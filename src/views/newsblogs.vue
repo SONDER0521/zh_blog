@@ -54,24 +54,12 @@ onMounted(() => {
     outline: {
       enable: true,
       position: 'left'
-    }
+    },
+
   })
 })
+
 const form_title = reactive({})
-// const getEditorContent = () => {
-//   if (vditor.value) {
-//     const content = vditor.value.getValue();
-//     console.log(content);
-//     // axios.post(
-//     //   '', {
-
-//     // }
-//     // )
-
-//   }
-
-// };
-
 
 //提交后弹框的选择内容
 const visible = ref(false);

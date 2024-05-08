@@ -2,7 +2,8 @@
 
     <div style="width: 60%; margin: 0 auto; ">
         <div style="width: 100%;  background-color: #FFFFFF; ">
-            <h2 style="text-align: center;">我的文章</h2>
+            <h2 style="text-align: center; padding-top: 20px;">我的文章</h2>
+            
             <span style="padding-left: 15px;">
                 <a-avatar>
                     <img alt="avatar"
@@ -18,16 +19,19 @@
 
                         <a-typography :style="{ width: '70%', padding: ' 15px 15px 0px 15px' }">
                             <a-typography-title :heading="5">{{ i.title }}</a-typography-title>
-                            <a-typography-paragraph  type="secondary">
+                            <a-typography-paragraph type="secondary" :ellipsis="{
+                    rows: 3,
+                    showTooltip: true,
+                }">
                                 {{ i.markdown }}
                             </a-typography-paragraph>
                         </a-typography>
-                        <a-image width="100" style="margin-left: 5%;" src="#" />
+                        <!-- <a-image width="100" style="margin-left: 5%;" src="#" /> -->
                     </div>
                     <div style="padding: 0px 15px 15px 15px;">
                         <div>查看&nbsp;{{ i.views }}&nbsp;评论&nbsp;{{ i.comments }}&nbsp;赞&nbsp;{{ i.likes
                             }}&nbsp;&nbsp;&nbsp;{{
-                i.created_at }}</div>
+                    i.created_at }}</div>
                     </div>
                 </div>
 
@@ -52,7 +56,7 @@ const form = reactive({})
 axios.get(
     'http://127.0.0.1:8000/api/personal/profile/', {
     params: {
-        username:localStorage.getItem("token_user")
+        username: localStorage.getItem("token_user")
     }
 }).then((res) => {
     console.log(res)
@@ -64,12 +68,13 @@ axios.get(
 
 //点击跳转到详情页面
 const particulars = (key) => {
-    router.push({
-        path: "/particulars",
-        query: {
-            key: key
-        }
-    })
+    window.open(`/particulars?key=${key}`, '_blank');
+    // router.push({
+    //     path: "/particulars",
+    //     query: {
+    //         key: key
+    //     }
+    // })
 }
 </script>
 

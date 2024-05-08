@@ -24,8 +24,8 @@
                         </a-typography-paragraph>
                     </a-typography>
                 
-                    <img width="100" style="margin-left: 5%;"
-                        src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp" />
+                    <!-- <img width="100" style="margin-left: 5%;"
+                        src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp" /> -->
                     <!-- <a-image width="100" style="margin-left: 5%;"
                         src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp" /> -->
                 </div>
@@ -47,12 +47,13 @@ import router from '@/router';
 import axios from 'axios';
 import { reactive,onBeforeUpdate } from 'vue';
 const particulars = (key) => {
-    router.push({
-        path: "/particulars",
-        query: {
-            key: key
-        }
-    })
+    window.open(`/particulars?key=${key}`, '_blank');
+    // router.push({
+    //     path: "/particulars",
+    //     query: {
+    //         key: key
+    //     }
+    // })
 }
 
 const form_title = reactive({})

@@ -1,8 +1,9 @@
 <template>
   <title1 style=" position: fixed; z-index: 9999;"></title1>
-  <keep-alive>
+  <KeepAlive :max="10">
     <router-view style="margin-top: 90px; "></router-view>
-  </keep-alive>
+  </KeepAlive>
+
 </template>
 
 <script setup>
