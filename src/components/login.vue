@@ -4,7 +4,7 @@
         <!-- @before-ok="handleBeforeOk" -->
         <a-form :model="form">
             <a-form-item field="name" label="Name">
-                <a-input v-model="form.name" />
+                <a-input v-model="form.username" />
             </a-form-item>
             <a-form-item field="password" label="password">
                 <a-input v-model="form.password" />
@@ -21,7 +21,7 @@ export default {
         const visible = inject("msg")
         console.log(visible)
         const form = reactive({
-            name: '',
+            username: '',
             password: ''
         });
 
@@ -35,12 +35,12 @@ export default {
         const login = () => {
             console.log("这是用户信息：")
             console.log(form)
-            if (form.name != '' && form.password != '') {
+            if (form.username != '' && form.password != '') {
                 axios.post('http://127.0.0.1:8000/api/user/login/', form)
                     .then((res) => {
                         if (res.data == '登录失败') {
                             alert("登录失败,请重新登录")
-                            form ={}
+                          
                         } else {
                             localStorage.setItem("token", res.data.id)
                             localStorage.setItem("token_user", form.name)

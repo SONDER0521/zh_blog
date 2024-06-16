@@ -32,7 +32,7 @@
                 <a-button type="primary" @click="submit(content.value.article.id)">提交</a-button>
             </a-space>
             <hr color="#E5E6EB">
-            <div>{{ content.value.comments.length }}条品论</div>
+            <div>{{ content.value.comments.length }}条评论</div>
             <hr color="#E5E6EB">
             <div v-for="(comment) in content.value.comments" :key="comment.id"
                 :v-if="comment.article == content.value.id">
